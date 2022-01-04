@@ -1,0 +1,10 @@
+import { createApp } from 'vue3'
+import App from '{{filename}}'
+export * from '{{filename}}';
+
+const mode = process.env.mode;
+if (mode != 'prod')  {
+    const app = createApp(App)
+    app.mount('#app');
+}
+export default App;

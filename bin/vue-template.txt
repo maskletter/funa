@@ -1,0 +1,14 @@
+import Vue from 'vue'
+import App from '{{filename}}'
+export * from '{{filename}}';
+
+const mode = process.env.mode;
+if (mode != 'prod')  {
+  Vue.config.productionTip = false
+
+  new Vue({
+    render: h => h(App),
+  }).$mount('#app')
+
+}
+export default App;
