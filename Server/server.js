@@ -68,15 +68,6 @@ function dev(config) {
 
 module.exports = (config = {}) => {
     spinner.start()
-    // const localTsConfig = path.join(process.env.fileDirectory, 'tsconfig.js')
-    // if (fs.existsSync(localTsConfig)) {
-    //     require(localTsConfig)(tsconfig);
-    // }
-    // const config = merge(createConfig(), _config)
-    // const localConfig = path.join(process.env.fileDirectory, 'webpack.config.js')
-    // if (fs.existsSync(localConfig)) {
-    //     require(localConfig)(config);
-    // }
     if (process.env.mode == 'prod') {
         build(config);
     } else {

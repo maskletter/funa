@@ -59,6 +59,9 @@ const config = (entry, outputPath) => {
         .add(path.resolve(__dirname, '../node_modules'))
         .add('node_modules')
 
+    utils.findParentFolder('node_modules').forEach(modules => {
+        config.resolve.modules.add(modules)
+    })
     config.resolve.modules
         .add('node_modules')
         .add(path.resolve(__dirname, '../node_modules'))
@@ -72,7 +75,7 @@ const config = (entry, outputPath) => {
             // 按理说应该使用 require.resolve('vue2')
             // 但是这个方法如果是首次新加的包会提示找不到
             config.resolve.alias.set(
-                'vue', 
+                'vue',
                 path.join(__dirname, '../node_modules/vue2/dist/vue.runtime.common.js')
             )
             // config.resolve.alias.set('vue', require.resolve('vue2'))
@@ -82,7 +85,7 @@ const config = (entry, outputPath) => {
         },
         vue3: () => {
             config.resolve.alias.set(
-                'vue', 
+                'vue',
                 path.join(__dirname, '../node_modules/vue3/index.js')
             )
             const { VueLoaderPlugin } = require('vue-loader-v16')
@@ -92,13 +95,13 @@ const config = (entry, outputPath) => {
     })
 
     config.resolve.extensions
-        .add('.js')
-        .add('.jsx')
         .add('.ts')
         .add('.tsx')
-        // .add('vue')
+        .add('.js')
+        .add('.jsx')
+    // .add('vue')
 
-    config.module.rule('image').test(/\.(png|jpe?g|gif|svg)(\?.*)?$/).type('javascript/auto').use('img').loader('url-loader').options({
+    config.module.rule('image').test(/\.(png|jpe?g|gif|svg|webp)(\?.*)?$/).type('javascript/auto').use('img').loader('url-loader').options({
         esModule: false,
         limit: 10000,
         name: 'img/[name].[hash:7].[ext]'
@@ -110,7 +113,7 @@ const config = (entry, outputPath) => {
         }]
     )
     // 请确保引入这个插件！
-    
+
     config.plugin('MiniCssExtractPlugin').use(MiniCssExtractPlugin)
     config.plugin('HtmlWebpackPlugin').use(
         HtmlWebpackPlugin, [{
@@ -175,16 +178,16 @@ module.exports = (entry, output) => {
     fs.existsSync(localTsConfig) && require(localTsConfig)(tsConfig.get());
     const _config = config(entry, output);
     fs.existsSync(localConfig) && require(localConfig)(_config);
-    
+
     if (process.env.exportWebpack) {
         fs.writeFileSync('./output.js', _config.toString())
         console.log(chalk.green(' $ 配置导出完成'))
-        console.log(chalk.green(' $ '+path.resolve(process.env.fileDirectory, 'output.js')))
+        console.log(chalk.green(' $ ' + path.resolve(process.env.fileDirectory, 'output.js')))
     } else {
         const data = _config.toConfig();
         data.entry = entry
         Server(data)
     }
-    
+
 }
 

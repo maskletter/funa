@@ -88,9 +88,24 @@ module.exports = config => {
         .plugin('HtmlPlugin').use(HtmlPlugin)
 
     config.externals({
-        "vue": "Vue",
-        "react": "React",
-        'react-dom': 'ReactDOM',
+        vue: {
+            commonjs: 'vue',
+            commonjs2: 'vue',
+            amd: 'vue',
+            root: 'Vue', // 指向全局变量
+        },
+        "react": {
+            commonjs: 'react',
+            commonjs2: 'react',
+            amd: 'react',
+            root: 'React', // 指向全局变量
+        },
+        'react-dom': {
+            commonjs: 'react-dom',
+            commonjs2: 'react-dom',
+            amd: 'react-dom',
+            root: 'ReactDOM'
+        },
     })
 
 }

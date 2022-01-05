@@ -14,9 +14,9 @@ const isInstall = module =>  {
 }
 
 const installMap = {
-    vue: ['i', 'vue2@npm:vue', 'vue-template-compiler@2.6.14', 'vue-loader@15.9.8', '@vue/babel-preset-jsx@1.2.4', '@vue/babel-helper-vue-jsx-merge-props@1.2.1'],
-    vue3: ['i', 'vue3@npm:vue@3.2.26', '@vue/compiler-sfc', 'vue-loader-v16@npm:vue-loader@16.8.3', '@vue/babel-plugin-jsx@1.1.1', '@vue/babel-plugin-jsx@1.1.1', '@vue/babel-helper-vue-jsx-merge-props@1.2.1'],
-    react: ['i', 'react@17.0.2', 'react-dom@17.0.2', '@types/react@17.0.38', '@babel/preset-react@7.16.7']
+    vue: ['i', 'vue2@npm:vue', 'vue-template-compiler@2.6.14', 'vue-loader@15.9.8', '@vue/babel-preset-jsx@1.2.4', '@vue/babel-helper-vue-jsx-merge-props@1.2.1', '--save-dev'],
+    vue3: ['i', 'vue3@npm:vue@3.2.26', '@vue/compiler-sfc', 'vue-loader-v16@npm:vue-loader@16.8.3', '@vue/babel-plugin-jsx@1.1.1', '@vue/babel-plugin-jsx@1.1.1', '@vue/babel-helper-vue-jsx-merge-props@1.2.1', '--save-dev'],
+    react: ['i', 'react@17.0.2', 'react-dom@17.0.2', '@types/react@17.0.38', '@babel/preset-react@7.16.7', '--save-dev']
 }
 module.exports = async key => {
     const is = isInstall(key);

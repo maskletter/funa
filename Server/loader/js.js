@@ -19,6 +19,9 @@ module.exports = (config, tsConfig) => {
         [
             require.resolve("@babel/plugin-transform-arrow-functions"),
             // { "spec": true }
+        ],
+        [
+            require.resolve('@babel/plugin-transform-runtime')
         ]
     ]
 
@@ -69,6 +72,7 @@ module.exports = (config, tsConfig) => {
                 transpileOnly: true,
                 happyPackMode: true,
                 compilerOptions: tsConfig.get().compilerOptions,
+                appendTsSuffixTo: ['\\.vue$'],
                 appendTsxSuffixTo: [
                     '\\.vue$'
                 ],
